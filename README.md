@@ -1,16 +1,16 @@
 # AI Toolkit 2.0: Building Multi-host Distributed GPU Clusters on Cisco UCS and Nexus
 
-Generative AI is an exciting and emerging space. Running large language models (LLMs) in the cloud can be both costly and expose proprietary data in unexpected ways. These issues can be avoided by deploying your AI workload in a private data centre on a scalable cluster of modern compute infrastructure. 
-
 On-prem AI models are often deployed on a single host with one or more GPU. This vastly limits the scale and size of the AI models being deployed. If your model is too large to fit in a single GPU, but it fits in a single node with multiple GPUs, you can use tensor parallelism. The tensor parallel size equals the number of GPUs you want to use. For example, if you have 2 GPUs in a single node, you can set the tensor parallel size to 2. But what if your model is too large to fit in a single node even if it has multiple GPUs? This problem can be solved with pipeline parallelism where you can leverage a high performance network in a multi-node multi-GPU cluster. In this case the tensor parallel size is the number of GPUs you want to use in each node, and the pipeline parallel size is the number of nodes you want to use. For example, if you have 8 GPUs in 2 nodes (4 GPUs per node), you can set the tensor parallel size to 4 and the pipeline parallel size to 2. Simply increase the number of nodes and GPU until you have enough memory to hold the model.
-
-The purpose of the AI toolkit is to automate the full installation of the open source software tools needed to build a distributed AI cluster using either Cisco UCS X-Series or C-Series. The toolkit makes extensive use of the UCS X-fabric, PCIe node and GPU acceleration. You can use this toolkit to build a distributed multi-host cluster of GPUs that is shared across a network.
 
 <img
   src="distributed_inference.jpg"
   alt="Distributed Inferencing"
   title="Distributed Inferencing"
   style="display: inline-block; margin: 0 auto; max-width: 150px">
+  
+The purpose of the AI toolkit is to automate the full installation of the open source software tools needed to build a distributed AI cluster using either Cisco UCS X-Series or C-Series. The toolkit makes extensive use of the UCS X-fabric, PCIe node and GPU acceleration. You can use this toolkit to build a distributed multi-host cluster of GPUs that is shared across a network.
+
+Generative AI is an exciting and emerging space. Running large language models (LLMs) in the cloud can be both costly and expose proprietary data in unexpected ways. These issues can be avoided by deploying your AI workload in a private data centre on a scalable cluster of modern compute infrastructure. 
 
 ### Table of Contents
 1. [Overview](#overview)

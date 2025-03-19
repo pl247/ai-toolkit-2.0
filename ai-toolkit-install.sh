@@ -50,7 +50,7 @@ sudo nvidia-ctk config --set nvidia-container-cli.no-cgroups --in-place
 echo -e "\n==================Get AI Monitor========================================="
 sleep 3
 # Install psutil
-pip install psutil
+pip3 install psutil
 sudo git -C /ai clone https://github.com/pl247/ai-monitor
 sudo chmod a+x /ai/ai-monitor
 sudo chmod a+x /ai/ai-monitor/ai-monitor.py
@@ -69,7 +69,7 @@ echo -e "\nEnd of running commands as root."
 echo -e "\n==================Updating PATH=========================================="
 sleep 1
 eval "$(/ai/miniconda/bin/conda shell.bash hook)"
-echo 'export PATH="/ai/miniconda/bin:/ai/miniconda/condabin:/usr/local/cuda/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="/home/ubuntu/.local/bin:/ai/miniconda/bin:/ai/miniconda/condabin:/usr/local/cuda/bin:$PATH"' >> ~/.bashrc
 echo 'export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"' >> ~/.bashrc
 source .bashrc
 
@@ -87,14 +87,14 @@ sleep 1
 pip install vllm 
 
 # Install Huggingface Hub
-#echo -e "\n==================Installing Huggingface Hub============================"
-#pip install huggingface_hub
+echo -e "\n==================Installing Huggingface Hub============================"
+pip install huggingface_hub
 #huggingface-cli login
 
 # Install first LLM model
 echo -e "\n==================Installing LLM Models================================="
 sudo chmod a+rwx /ai
-sudo chmod u+w /ai/models/
+sudo chmod a+rwx /ai/models/
 huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/models/NousResearch/Meta-Llama-3-8B-Instruct
 
 # Download scripts and make executable
@@ -105,7 +105,7 @@ chmod a+x ~/2-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/8-GPU-vllm-start.sh -P ~/
 chmod a+x ~/8-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/more-api-load-start.sh -P ~/
-chmod a+x ~/chatgpt-load-start.sh
+chmod a+x ~/more-api-load-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-start.sh -P ~/
 chmod a+x ~/webui-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-stop.sh -P ~/

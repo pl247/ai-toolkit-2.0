@@ -1,0 +1,31 @@
+name: webui
+services: 
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    environment:
+        - WEBUI_AUTH=false
+        - WEBUI_NAME=CAI
+        - OPENAI_API_KEY=LLM
+        - OPENAI_API_BASE_URL=http://198.18.5.11:8000/v1
+        - DEFAULT_MODELS=/ai/models/Meta-Llama-3-8B-Instruct/
+        - RAG_EMBEDDING_MODEL=sentence-transformers/paraphrase-MiniLM-L6-v2
+        - RESET_CONFIG_ON_START=true
+        - ENABLE_OLLAMA_API=false
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    ports:
+      - 8081:8080
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: always
+    deploy:
+        resources:
+            reservations:
+                devices:
+                    - driver: nvidia
+                      count: all
+                      capabilities:
+                          - gpu
+volumes:
+  open-webui:

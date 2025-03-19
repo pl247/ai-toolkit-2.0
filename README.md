@@ -7,7 +7,7 @@ On-prem AI models are often deployed on a single host with one or more GPU. This
   alt="Distributed Inferencing"
   title="Distributed Inferencing"
   style="display: inline-block; margin: 0 auto; max-width: 150px">
-  
+
 The purpose of the AI toolkit is to automate the full installation of the open source software tools needed to build a distributed AI cluster using either Cisco UCS X-Series or C-Series. The toolkit makes extensive use of the UCS X-fabric, PCIe node and GPU acceleration. You can use this toolkit to build a distributed multi-host cluster of GPUs that is shared across a network.
 
 Generative AI is an exciting and emerging space. Running large language models (LLMs) in the cloud can be both costly and expose proprietary data in unexpected ways. These issues can be avoided by deploying your AI workload in a private data centre on a scalable cluster of modern compute infrastructure. 
@@ -54,12 +54,12 @@ In Intersight, derive and deploy a server-profile from a bare-metal linux templa
 
 ### 2. Install OS on Server
 
-From Intersight, select server and perform automated OS install. Use the custom OS install script from this repo called ```ucsx-ai-toolkit.cfg``` for UCS X-series and UCS C-series. You will want to modify the cloud-init settings for: password, address, gateway4 and nameservers.
+From Intersight, select server and perform automated OS install. Use the custom OS install script from this repo called ```ucs-ai-toolkit.cfg``` for UCS X-series and UCS C-series. You will want to modify the cloud-init settings for: password, address, gateway4 and nameservers.
 
 The following combination has been tested:
 1. OS Image - ubuntu-22.04.2-live-server-amd64.iso as version Ubuntu Server 22.04 LTS
 2. SCU Image - ucs-scu-6.3.2b.iso.iso as version 6.3.2b
-3. OS Configuration File - ucsx-ai-toolkit.cfg for X-Series and ucsc-ai-toolkit.cfg for C-Series as version Ubuntu Server 22.04 LTS
+3. OS Configuration File - ucs-ai-toolkit.cfg for X-Series and C-Series as version Ubuntu Server 22.04 LTS
 
 Other combinations may work, but please try these before asking for assistance.
 
@@ -83,12 +83,26 @@ sudo reboot
 
 Now that the system is fully installed, you can run the vLLM server software.
 
-Activate the vllm environment in conda, move to the correct directory and start the AI model in the vLLM server:
+Activate the vllm environment in conda, move to the correct directory and start the AI model in the vLLM server.
 
+First try using a single GPU:
+```
+conda activate vllm
+./1-GPU-vllm-start.sh
+```
+
+Now try two GPUs using tensor parallelism:
 ```
 conda activate vllm
 ./2-GPU-vllm-start.sh
 ```
+
+Finally try four (or more) GPUs using a combination of tensor and pipeline parallelism:
+```
+conda activate vllm
+./8-GPU-vllm-start.sh
+```
+
 
 To access the application, open a web browser to your server IP address on port 7860.
 http://10.0.0.10:7860

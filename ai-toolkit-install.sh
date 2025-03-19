@@ -56,10 +56,6 @@ sudo chmod a+x /ai/ai-monitor
 sudo chmod a+x /ai/ai-monitor/ai-monitor.py
 sudo chmod a+x /ai/ai-monitor/ai-monitor-plus.py
 
-# Install psutil
-pip install psutil
-
-
 # Install Miniconda
 echo -e "\n==================Get Miniconda=========================================="
 sleep 3
@@ -84,11 +80,6 @@ conda init bash
 conda create -n vllm python=3.12 -y
 conda activate vllm
 
-# Install pytorch
-#echo -e "\n==================Installing Pytorch====================================="
-#sleep 1
-#pip3 install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121
-
 # Install vLLM
 echo -e "\n==================Installing vLLM======================================="
 sleep 1
@@ -96,20 +87,13 @@ sleep 1
 pip install vllm 
 
 # Install Huggingface Hub
-echo -e "\n==================Installing Huggingface Hub============================"
-pip install huggingface_hub
-huggingface-cli login
-#get read token from passwords
+#echo -e "\n==================Installing Huggingface Hub============================"
+#pip install huggingface_hub
+#huggingface-cli login
 
 # Install first LLM model
 echo -e "\n==================Installing LLM Models================================="
 huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/models/
-
-# If you have 80GB VRAM
-#python3 download-model.py TheBloke/Wizard-Vicuna-30B-Uncensored-fp16
-#If you have only 24GB VRAM
-#python3 download-model.py lmsys/vicuna-7b-v1.5
-
 
 # NEED TO DOWNLOAD webUI container
 

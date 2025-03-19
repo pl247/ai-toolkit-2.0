@@ -93,23 +93,21 @@ pip install vllm
 
 # Install first LLM model
 echo -e "\n==================Installing LLM Models================================="
-huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/models/
-
-# NEED TO DOWNLOAD webUI container
-
-
+sudo chmod a+rwx /ai
+sudo chmod u+w /ai/models/
+huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/models/NousResearch/Meta-Llama-3-8B-Instruct
 
 # Download scripts and make executable
 echo -e "\n==================Downloading Scripts=================================="
-wget https://raw.githubusercontent.com/pl247/ai-toolkit/main/2-GPU-vllm-start.sh -P ~/2-GPU-vllm-start.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/2-GPU-vllm-start.sh -P ~/2-GPU-vllm-start.sh
 chmod a+x ~/2-GPU-vllm-start.sh
-wget https://raw.githubusercontent.com/pl247/ai-toolkit/main/8-GPU-vllm-start.sh -P ~/8-GPU-vllm-start.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/8-GPU-vllm-start.sh -P ~/8-GPU-vllm-start.sh
 chmod a+x ~/8-GPU-vllm-start.sh
-wget https://raw.githubusercontent.com/pl247/ai-toolkit/main/chatgpt-load-start.sh -P ~/chatgpt-load-start.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/chatgpt-load-start.sh -P ~/chatgpt-load-start.sh
 chmod a+x ~/chatgpt-load-start.sh
-wget https://raw.githubusercontent.com/pl247/ai-toolkit/main/webui-vllm-start.sh -P ~/webui-vllm-start.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-start.sh -P ~/webui-vllm-start.sh
 chmod a+x ~/webui-vllm-start.sh
-wget https://raw.githubusercontent.com/pl247/ai-toolkit/main/webui-vllm-stop.sh -P ~/webui-vllm-stop.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-stop.sh -P ~/webui-vllm-stop.sh
 chmod a+x ~/webui-vllm-stop.sh
 
 # Clean up tasks

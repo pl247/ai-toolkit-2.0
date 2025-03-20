@@ -104,6 +104,8 @@ wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/1-GPU-vllm-star
 chmod a+x ~/1-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/2-GPU-vllm-start.sh -P ~/
 chmod a+x ~/2-GPU-vllm-start.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/4-GPU-vllm-start.sh -P ~/
+chmod a+x ~/4-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/8-GPU-vllm-start.sh -P ~/
 chmod a+x ~/8-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/more-api-load-start.sh -P ~/
@@ -112,6 +114,11 @@ wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-star
 chmod a+x ~/webui-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-stop.sh -P ~/
 chmod a+x ~/webui-vllm-stop.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/stats.sh -P ~/
+chmod a+x ~/stats.sh
+
+
+
 
 # Clean up tasks
 echo -e "\n\n===============Restart the system with 'sudo reboot' for GPU to work =="

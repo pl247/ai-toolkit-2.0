@@ -100,6 +100,8 @@ huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/m
 # Download scripts and make executable
 echo -e "\n==================Downloading Scripts=================================="
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/docker-compose-webui.yml -P ~/
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/1-GPU-vllm-start.sh -P ~/
+chmod a+x ~/1-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/2-GPU-vllm-start.sh -P ~/
 chmod a+x ~/2-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/8-GPU-vllm-start.sh -P ~/

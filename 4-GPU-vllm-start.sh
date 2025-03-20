@@ -1,4 +1,6 @@
 #!/bin/bash
+eval "$(conda shell.bash hook)"
+conda activate vllm
 ip=$(ifconfig eno5 | grep 'inet ' | awk '{print $2}')
 clear
 echo -e "Starting vLLM server"

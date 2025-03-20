@@ -1,6 +1,7 @@
 !/bin/bash
 eval "$(conda shell.bash hook)"
 conda activate vllm
+
 ip=$(ifconfig eno5 | grep 'inet ' | awk '{print $2}')
 clear
 echo "Starting vLLM server with OpenAI compatible API on $ip port 8080"

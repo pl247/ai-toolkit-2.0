@@ -109,12 +109,18 @@ wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/4-GPU-vllm-star
 chmod a+x ~/4-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/8-GPU-vllm-start.sh -P ~/
 chmod a+x ~/8-GPU-vllm-start.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/pp-GPU-vllm-start.sh -P ~/
+chmod a+x ~/pp-GPU-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/more-api-load-start.sh -P ~/
 chmod a+x ~/more-api-load-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-start.sh -P ~/
 chmod a+x ~/webui-vllm-start.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/webui-vllm-stop.sh -P ~/
 chmod a+x ~/webui-vllm-stop.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/ray-stop-start-head.sh -P ~/
+chmod a+x ~/ray-stop-start-head.sh
+wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/ray-stop-start-worker.sh -P ~/
+chmod a+x ~/ray-stop-start-worker.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/stats.sh -P ~/
 chmod a+x ~/stats.sh
 

@@ -16,7 +16,10 @@ Generative AI is an exciting and emerging space. Running large language models (
 1. [Overview](#overview)
 2. [Installing the AI Toolkit](#installing-the-ai-toolkit)
 3. [Running the vLLM server](#running-the-vllm-server)
-4. [Performance Tuning](#performance-tuning)
+4. [Downloading Additional Models for vLLM ](#downloading-additional-models-for-vllm)
+5. [Installing an OpenAI API Compatible Load Generator](#installing-an-openai-api-compatible-load-generator)
+6. [Troubleshooting](#troubleshooting)
+7. [Performance Tuning](#performance-tuning)
 
 ## Overview
 
@@ -112,7 +115,7 @@ Monitor the system using the ai-monitor tool that was installed as part of the t
 /ai/ai-monitor/ai-monitor-vllm.py --api-url http://10.1.1.11:8000/metrics
 ```
 
-### Downloading Additional Models for vLLM
+## Downloading Additional Models for vLLM
 
 Check out the Hugging Face leader board: https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard and then download any of the models you would like to try using the following commands:
 
@@ -122,9 +125,34 @@ huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/m
 
 Substitute <NousResearch/Meta-Llama-3-8B-Instruct> for any Hugging Face model you would like.
 
+## Installing an OpenAI API Compatible Load Generator
 
+1. Clone the following repo to your server: 
+    ```
+    git clone https://github.com/rjohnston6/chatgpt-load-gen.git
+    ```
+2. Define environment variables for target OpenWebUI Target URL and API Key and desired base request count. A `env_example.list` file is included rename the file to `env.list` and update the variables to set them as part of the container execution process.
 
-### Troubleshooting
+    | Variable | Default Value |
+    | --- | --- |
+    | COUNT | 10 |
+    | API_KEY | LLM |
+    |API_URL | http://10.1.1.11:8000/v1 |
+    | MODEL | /ai/models/NousResearch/Meta-Llama-3.1-8B-Instruct/ |
+
+3. Build the the container using your preferred container runtime
+   - **Docker:**
+      ```
+      cd chatgpt-load-gen
+      docker build -t chatgpt-load:v1.0 .
+      ```
+4. Start the continer to generate load.
+   - **Docker:**
+      ```
+      docker run -d --rm --env-file env.list chatgpt-load:v1.0
+      ```
+
+## Troubleshooting
 
 If `wget` fails with the error message `unsafe legacy renegotiation disabled` try the following workaround:
 

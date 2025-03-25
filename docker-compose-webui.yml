@@ -7,7 +7,7 @@ services:
         - WEBUI_NAME=CAI
         - OPENAI_API_KEY=LLM
         - OPENAI_API_BASE_URL=http://198.18.5.11:8000/v1
-        - DEFAULT_MODELS=/ai/models/Meta-Llama-3-8B-Instruct/
+        - DEFAULT_MODELS=/ai/models/NousResearch/Meta-Llama-3-8B-Instruct/
         - RAG_EMBEDDING_MODEL=sentence-transformers/paraphrase-MiniLM-L6-v2
         - RESET_CONFIG_ON_START=true
         - ENABLE_OLLAMA_API=false

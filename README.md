@@ -107,9 +107,9 @@ conda activate vllm
 To access the application, open a web browser to your server IP address on port 7860.
 http://10.0.0.10:7860
 
-Monitor the system using the ai-monitor tool that was installed as part of the toolkit:
+Monitor the system using the ai-monitor tool that was installed as part of the toolkit. Replace the IP address with the IP of your vllm server:
 ```
-/ai/ai-monitor/ai-monitor
+/ai/ai-monitor/ai-monitor-vllm.py --api-url http://10.1.1.11:8000/metrics
 ```
 
 ### Downloading Additional Models for vLLM

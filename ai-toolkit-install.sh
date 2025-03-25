@@ -96,6 +96,7 @@ echo -e "\n==================Installing LLM Models==============================
 sudo chmod a+rwx /ai
 sudo chmod a+rwx /ai/models/
 huggingface-cli download NousResearch/Meta-Llama-3-8B-Instruct --local-dir /ai/models/NousResearch/Meta-Llama-3-8B-Instruct
+# huggingface-cli download NousResearch/Meta-Llama-3.1-70B-Instruct --local-dir /ai/models/NousResearch/Meta-Llama-3.1-70B-Instruct
 
 # Download scripts and make executable
 echo -e "\n==================Downloading Scripts=================================="

@@ -156,7 +156,7 @@ Substitute <NousResearch/Meta-Llama-3-8B-Instruct> for any Hugging Face model yo
       cd chatgpt-load-gen
       docker build -t chatgpt-load:v1.0 .
       ```
-4. Start the continer to generate load:
+4. Start the container to generate load:
       ```
       docker run -d --rm --env-file env.list chatgpt-load:v1.0
       ```

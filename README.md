@@ -160,6 +160,10 @@ Substitute <NousResearch/Meta-Llama-3-8B-Instruct> for any Hugging Face model yo
       ```
       docker run -d --rm --env-file env.list chatgpt-load:v1.0
       ```
+      or run the script:
+      ```
+      ./more-api-load-start.sh
+      ```
 
 ## Troubleshooting
 

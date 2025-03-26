@@ -8,7 +8,7 @@ On-prem AI models are often deployed on a single host with one or more GPU. This
   title="Distributed Inferencing"
   style="display: inline-block; margin: 0 auto; max-width: 150px">
 
-The purpose of the AI toolkit is to automate the full installation of the open source software tools needed to build a distributed AI cluster using either Cisco UCS X-Series or C-Series. The toolkit makes extensive use of the UCS X-fabric, PCIe node and GPU acceleration. You can use this toolkit to build a distributed multi-host cluster of GPUs that is shared across a network.
+The purpose of the AI toolkit is to automate the full installation of the open source software tools needed to build a distributed AI cluster using either Cisco UCS X-Series or C-Series. If UCS X-Series is used, the toolkit makes extensive use of the UCS X-fabric, PCIe node and GPU acceleration. You can use this toolkit to build a distributed multi-host cluster of GPUs that is shared across a network.
 
 Generative AI is an exciting and emerging space. Running large language models (LLMs) in the cloud can be both costly and expose proprietary data in unexpected ways. These issues can be avoided by deploying your AI workload in a private data centre on a scalable cluster of modern compute infrastructure. 
 
@@ -35,6 +35,7 @@ This solution guide will assist you with the full installation of:
 9. Ray Clusters which is a framework for developing and running parallel and distributed applications across hosts in AI
 10. Docker container subsystem to allow you to run AI/ML containers
 11. HuggingFace CLI utility to enable additional model download from Hugging Face
+12. A docker container utility to create LLM load on your system
 
 <img
   src="llm_stack.jpg"
@@ -48,16 +49,18 @@ This solution guide will assist you with the full installation of:
 
 1. Cisco UCS X-series w/ X440p PCIe node and NVIDIA L4, L40, L40S, H100 GPU
 2. Cisco Intersight account
+3. Cisco Nexus frontend and backend (optional) Ethernet networks 
 
 ### 1. Create Server Profile
 
-In Intersight, derive and deploy a server-profile from a bare-metal linux template to a UCS X-Series X210c compute node. Basically all that is required is:
-1. Boot from M.2 RAID
-2. Single ethernet NIC with fabric failover (for redundancy)
+In Intersight, derive and deploy server-profiles from a bare-metal linux server template to your UCS X-Series or C-Series compute nodes. Basically all that is required is:
+1. Storage policy to configure local drives however you wish
+2. Boot order policy so system boots from M.2 or local disks
+3. Single ethernet NIC with fabric failover (for redundancy)
 
 ### 2. Install OS on Server
 
-From Intersight, select server and perform automated OS install. Use the custom OS install script from this repo called ```ucs-ai-toolkit.cfg``` for UCS X-series and UCS C-series. You will want to modify the cloud-init settings for: password, address, gateway4 and nameservers.
+From Intersight, select server and perform automated OS install. Use the custom OS install script from this repo called ```ucs-ai-toolkit.cfg``` for UCS X-series and UCS C-series. You will want to modify the settings in the config file for: password, address, gateway4 and nameservers. The workflow will only prompt for IP address so the other settings must be changed in the ```ucs-ai-toolkit.cfg``` file before you run the OS install.
 
 The following combination has been tested:
 1. OS Image - ubuntu-22.04.2-live-server-amd64.iso as version Ubuntu Server 22.04 LTS
@@ -94,25 +97,33 @@ conda activate vllm
 ./1-GPU-vllm-start.sh
 ```
 
-Now try two GPUs using tensor parallelism:
+Start the Open WebUI. It is a docker container and can be started as follows:
+```
+./webui-vllm-start.sh
+```
+
+Then connect to the Open WebUI in your web browser at your server IP address port 8081, select an AI model and type in a prompt.
+http://[serverIP]:8081
+
+Monitor CPU, GPU and network performance using the ai-monitor tool that was installed as part of the toolkit. Replace the IP address with the IP of your vllm server:
+```
+/ai/ai-monitor/ai-monitor-vllm.py --api-url http://10.1.1.11:8000/metrics
+```
+
+Alternately you can modify the stats.py script to match the IP address of your environment.
+
+Stop the vLLM server process with ^c and try two GPUs using tensor parallelism:
 ```
 conda activate vllm
 ./2-GPU-vllm-start.sh
 ```
 
-Finally try four (or more) GPUs using a combination of tensor and pipeline parallelism:
+Open additional SSH sessions and run the AI monitor tool on those systems to observe the networking and GPU use across the cluster.
+
+Finally try four (or more) GPUs:
 ```
 conda activate vllm
-./8-GPU-vllm-start.sh
-```
-
-
-To access the application, open a web browser to your server IP address on port 7860.
-http://10.0.0.10:7860
-
-Monitor the system using the ai-monitor tool that was installed as part of the toolkit. Replace the IP address with the IP of your vllm server:
-```
-/ai/ai-monitor/ai-monitor-vllm.py --api-url http://10.1.1.11:8000/metrics
+./4-GPU-vllm-start.sh
 ```
 
 ## Downloading Additional Models for vLLM
@@ -153,15 +164,6 @@ Substitute <NousResearch/Meta-Llama-3-8B-Instruct> for any Hugging Face model yo
       ```
 
 ## Troubleshooting
-
-If `wget` fails with the error message `unsafe legacy renegotiation disabled` try the following workaround:
-
-```
-sudo vi /usr/lib/ssl/openssl.cnf
-
-#Add the following option to openssl.cnf under the [system_default_sect] section
-Options = UnsafeLegacyRenegotiation
-```
 
 If you did not modify the timezone in the ```ucsx-ai-toolkit.cfg``` file, you can set the timezone on your system correctly post install:
 

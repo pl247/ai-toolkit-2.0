@@ -124,9 +124,6 @@ chmod a+x ~/ray-stop-start-worker.sh
 wget https://raw.githubusercontent.com/pl247/ai-toolkit-2.0/main/stats.sh -P ~/
 chmod a+x ~/stats.sh
 
-
-
-
 # Clean up tasks
 echo -e "\n\n===============Restart the system with 'sudo reboot' for GPU to work =="
 sleep 3

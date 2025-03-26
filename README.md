@@ -151,14 +151,12 @@ Substitute <NousResearch/Meta-Llama-3-8B-Instruct> for any Hugging Face model yo
     |API_URL | http://10.1.1.11:8000/v1 |
     | MODEL | /ai/models/NousResearch/Meta-Llama-3.1-8B-Instruct/ |
 
-3. Build the the container using your preferred container runtime
-   - **Docker:**
+3. Build the the container:
       ```
       cd chatgpt-load-gen
       docker build -t chatgpt-load:v1.0 .
       ```
-4. Start the continer to generate load.
-   - **Docker:**
+4. Start the continer to generate load:
       ```
       docker run -d --rm --env-file env.list chatgpt-load:v1.0
       ```

@@ -24,7 +24,7 @@ Generative AI is an exciting and emerging space. Running large language models (
 7. [Performance Tuning](#performance-tuning)
 8. [Adding Splunk Observability to AI Toolkit](#adding-splunk-observability-to-ai-toolkit)
 9. [Making the AI Toolkit Agentic](#making-the-ai-toolkit-agentic)
-10. [Adding Hermes Agent to the AI Toolkit](#adding-Hermes-Agent-to-the-AI-Toolkit)
+10. [Adding OpenClaw Capabilities to the AI Toolkit using Hermes Agent](#Adding-OpenClaw-Capabilities-to-the-AI-Toolkit-using-Hermes-Agent)
 
 ## Overview
 
@@ -262,8 +262,8 @@ uvicorn main:app --host 198.18.5.11 --port 8086 --reload
 
 3. Enable OpenWebUI to use the tool by adding a tool connection to the following URL: http://198.18.5.11:8086 (change this URL to your IP and port that you started the tool on in step 2). Set the tool to public in OpenWebUI and then refresh your browser and click the “+” on the prompt and turn the tool selector to on in OpenWebUI. 
 
-## Adding Hermes Agent to the AI Toolkit
+## Adding OpenClaw Capabilities to the AI Toolkit using Hermes Agent
 
-The Hermes Agent provides advanced reasoning and function-calling capabilities to the AI Toolkit, leveraging models optimized for complex task execution.
+OpenClaw is an agent "control plane" (gateway) that connects many tools. Hermes Agent is similar but acts more like a control plane that gets smarter the more you use it. It focuses on long-term learning and optimization. When paired with the AI Toolkit, the Hermes Agent provides advanced reasoning and function-calling capabilities, leveraging models optimized for complex task execution.
 
 See the additional instructions here: https://github.com/pl247/hermes-agent-on-ai-toolkit

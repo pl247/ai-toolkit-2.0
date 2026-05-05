@@ -260,3 +260,9 @@ uvicorn main:app --host 198.18.5.11 --port 8086 --reload
 ```
 
 3. Enable OpenWebUI to use the tool by adding a tool connection to the following URL: http://198.18.5.11:8086 (change this URL to your IP and port that you started the tool on in step 2). Set the tool to public in OpenWebUI and then refresh your browser and click the “+” on the prompt and turn the tool selector to on in OpenWebUI. 
+
+## Adding Hermes Agent to the AI Toolkit
+
+The Hermes Agent provides advanced reasoning and function-calling capabilities to the AI Toolkit, leveraging models optimized for complex task execution.
+
+See the additional instructions here: https://github.com/pl247/hermes-agent-on-ai-toolkit

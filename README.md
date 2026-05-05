@@ -24,6 +24,7 @@ Generative AI is an exciting and emerging space. Running large language models (
 7. [Performance Tuning](#performance-tuning)
 8. [Adding Splunk Observability to AI Toolkit](#adding-splunk-observability-to-ai-toolkit)
 9. [Making the AI Toolkit Agentic](#making-the-ai-toolkit-agentic)
+10. [Adding Hermes Agent to the AI Toolkit] (#Adding-Hermes-Agent-to-the-AI-Toolkit)
 
 ## Overview
 
